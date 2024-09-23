@@ -1,5 +1,7 @@
 <!-- TODO: check if it's possible to run the dapp from the tutorial without editing the composer-validator yaml -->
 <!-- TODO: add cover gif for application -->
+![New Project](https://github.com/user-attachments/assets/3c0ab287-1270-44bc-a4d5-424e430ab8b5)
+
 # Running machine learning models in Cartesi machines
 Pedro Lins, João Pedro Belga, Leonardo Camargo
 
