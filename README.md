@@ -50,7 +50,7 @@ Now you'll set up your dapp. There are 2 ways of doing this, one of them we have
 ### Step 3: Creating the client application
 First, install the dependencies:
 ```
-pip install gymnasium onnxruntime numpy
+pip install gymnasium numpy
 ```
 
 Here's an example client application you can just copy and paste to send observations to our model running in the Cartesi machine and apply the action:
