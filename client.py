@@ -2,7 +2,7 @@ import gymnasium as gym
 import numpy as np
 from os import system
 
-env = gym.make("FrozenLake-v1", render_mode="human")
+env = gym.make("FrozenLake-v1", render_mode="human", is_slippery=False)
 observation, info = env.reset()
 print(observation)
 
