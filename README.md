@@ -52,7 +52,7 @@ Now you'll set up your dapp. There are 2 ways of doing this, one of them we have
 ### Step 3: Creating the client application
 First, install the dependencies:
 ```
-pip install gymnasium numpy
+pip install gymnasium[toy-text] numpy
 ```
 
 Now, change directory to the parent folder of the template you cloned (i.e. from inside the repo you cloned, do `cd ..`) create a file called `client.py`. This file will contain the client-side application that sends the game state to the Cartesi machine, and gets the model's outputs. Here's an example client application you can just copy and paste to send observations to our model running in the Cartesi machine and apply the action:
@@ -140,6 +140,9 @@ nonodo -- python3 dapp.py
 ```
 
 ## Congrats!
+
+![Demo of the RL algorithm running inside the Cartesi Machine - and displaying state on your computer locally](https://github.com/user-attachments/assets/caea4075-83b9-44ab-bb81-ac3cde7f3119)
+
 You have just trained an RL model, put it inside a Cartesi rollup, and wrote an application which leverages the rollup to perform completely verifiable and deterministic inference for controlling a character in a simulated environment!
 
 Our model isn't great... Can you make it better?
