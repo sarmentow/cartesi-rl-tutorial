@@ -35,7 +35,7 @@ Now you'll set up your dapp. There are 2 ways of doing this, one of them we have
 
     The template comes with a Dockerfile which installs a pre-built wheel for the `onnxruntime` package, and a dapp.py file which puts the inputs sent to the rollup into the model, and emits the model's outputs as notices that you can query through the GraphQL endpoint.
 
-    You should replace the `simple_nn.onnx` file inside it with the one you've created in step 1 (make sure to rename it to `simple_nn.onnx` or change the model filename in `dapp.py`). Make sure you have the model parameters set appropriately in your `dapp.py`. For our example:
+    You should replace the `nn.onnx` file inside it with the one you've created in step 1 (make sure to rename it to `nn.onnx` or change the model filename in `dapp.py`). Make sure you have the model parameters set appropriately in your `dapp.py`. For our example:
     ```python
     MODEL_DTYPE=np.int64
     MODEL_INPUT_SHAPE = (1,)
@@ -55,7 +55,7 @@ First, install the dependencies:
 pip install gymnasium numpy
 ```
 
-Here's an example client application you can just copy and paste to send observations to our model running in the Cartesi machine and apply the action:
+Now, change directory to the parent folder of the template you cloned (i.e. from inside the repo you cloned, do `cd ..`) create a file called `client.py`. This file will contain the client-side application that sends the game state to the Cartesi machine, and gets the model's outputs. Here's an example client application you can just copy and paste to send observations to our model running in the Cartesi machine and apply the action:
 
 ```python
 import gymnasium as gym
@@ -120,10 +120,24 @@ for _ in range(1000):
 env.close()
 ```
 
-With the client script and dapp in place you can run `cartesi build && cartesi run` from inside the dapp template on one terminal, and run the client script from another terminal session `python3 client.py`.
+Now, open a terminal session for the dapp. Cd into the template repo you cloned. To build you dapp run:
+```
+cartesi build
+```
+Then to start your application run:
+```
+cartesi run
+```
 
-If you want to make changes to the dapp, we recommend using Nonodo to be able to quickly see your changes take effect. You can use Nonodo as so:
-`nonodo -- python3 dapp.py`
+Now, in a seperate terminal session, run your client application:
+```
+python3 client.py
+```
+
+If you want to make changes to the dapp, we recommend using Nonodo to be able to quickly see your changes take effect before building the actual rollup image. You can use Nonodo as so:
+```
+nonodo -- python3 dapp.py
+```
 
 ## Congrats!
 You have just trained an RL model, put it inside a Cartesi rollup, and wrote an application which leverages the rollup to perform completely verifiable and deterministic inference for controlling a character in a simulated environment!
@@ -144,4 +158,7 @@ In terms of real word applications... The singular characteristics of blockcahin
 ## Acknowledgements
 This work was done as part of the Cartesi Seed Grants program. We'd like to thank the Cartesi DevAd team, and the community for their feedback and support in doing this work.
 
-
+## Q&A
+Some questions that that have popped up while proof-reading (feel free to add your question!):
+- **Q: How about training machine learning models inside a rollup?**
+    - A: Our pre-built wheel for the `onnxruntime` library doesn't support training. It is theoretically possible to build a wheel with training support targetting RISC-V - although with the severe performance limitations of a rollup compared to a regular VM, it's not clear why you'd want to ever do that. If that interests you, refer to the [documentation for building onnxruntime with training support](https://onnxruntime.ai/docs/build/training.html).
